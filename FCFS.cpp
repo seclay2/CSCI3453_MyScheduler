@@ -6,47 +6,41 @@
 
 #include "FCFS.h"
 
-FCFS::FCFS(std::ifstream &input_file) {
+FCFS::FCFS(std::ifstream &input_file, CPU &cpu) {
     std::queue<Process> readyQueue;
     buildQueue(input_file, readyQueue);
     std::cout << "FCFS Scheduler Built\n";
-    processQueue(readyQueue);
+    processQueue(readyQueue, cpu);
 }
 
-void FCFS::processQueue(std::queue<Process> &readyQueue) {
-    int clock = 0;      // Tracks clock time as each process is made active
+void FCFS::processQueue(std::queue<Process> &readyQueue, CPU &cpu) {
+    std::queue<Process> rq = readyQueue;
     int numProcesses = readyQueue.size();
     int runningBurst=0, runningWait=0, runningTurnaround=0, runningResponse=0;
+
     while (!readyQueue.empty()) {
         Process active = readyQueue.front();
-        /* Wait Time */
-        active.waitTime = clock - active.arrivalTime;
-        runningWait += active.waitTime;
 
-        /* Burst Time */
-        clock += active.burstTime;
-        runningBurst += active.burstTime;
-
-        /* Completion Time */
-        active.completionTime = clock;
-
-        /* Turnaround Time */
+        /* Process */
+        active.waitTime = cpu.getClock() - active.arrivalTime;
+        cpu.run(active, active.burstTime);
+        active.completionTime = cpu.getClock();
         active.turnaround = active.completionTime - active.arrivalTime;
-        runningTurnaround += active.turnaround;
 
-        /* Response Time */
-        runningResponse += active.waitTime;     // response time for FCFS is the same as wait time
-
-        /* Context Switching */
-        // context switches do not occur in a FCFS algorithm
-
+        active.burstTime = readyQueue.front().burstTime;
         processList.push(active);
         readyQueue.pop();
+
+        /* Stats */
+        runningBurst += active.burstTime;
+        runningWait += active.waitTime;
+        runningTurnaround += active.turnaround;
+        runningResponse += active.waitTime;
     }
+
     avgBurst = runningBurst / numProcesses;
     avgWait = runningWait / numProcesses;
     avgTurnaround = runningTurnaround / numProcesses;
     avgResponse = runningResponse / numProcesses;
 
 }
-

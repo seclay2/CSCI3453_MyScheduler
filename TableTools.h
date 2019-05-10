@@ -5,8 +5,8 @@
  * Table formatting functions, adapted from user synaptik on stackoverflow.com
  */
 
-#ifndef OSLAB03_TABLETOOLS_H
-#define OSLAB03_TABLETOOLS_H
+#ifndef MYSCHEDULER_TABLETOOLS_H
+#define MYSCHEDULER_TABLETOOLS_H
 
 #include <string>
 #include <sstream>
@@ -73,4 +73,4 @@ namespace TableTools {
 
 }
 
-#endif //OSLAB03_TABLETOOLS_H
+#endif //MYSCHEDULER_TABLETOOLS_H

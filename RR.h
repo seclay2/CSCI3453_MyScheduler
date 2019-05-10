@@ -4,8 +4,8 @@
  * Due on 2019-5-12
  */
 
-#ifndef OSLAB03_RR_H
-#define OSLAB03_RR_H
+#ifndef MYSCHEDULER_RR_H
+#define MYSCHEDULER_RR_H
 
 #include "Scheduler.h"
 
@@ -21,11 +21,11 @@ private:
 
 public:
     RR() : Scheduler() { quantumsize=0; }
-    //TODO add RR constructor for input file param only with default qs
-    explicit RR(std::ifstream &input_file, int qs);
-    void processQueue(std::queue<Process> &readyQueue) override;
+    explicit RR(std::ifstream &input_file, CPU &cpu);
+    explicit RR(std::ifstream &input_file, int qs, CPU &cpu);
+    void processQueue(std::queue<Process> &readyQueue, CPU &cpu) override;
 
 };
 
 
-#endif //OSLAB03_RR_H
+#endif //MYSCHEDULER_RR_H

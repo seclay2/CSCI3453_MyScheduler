@@ -4,8 +4,8 @@
  * Due on 2019-5-12
  */
 
-#ifndef OSLAB03_SRTF_H
-#define OSLAB03_SRTF_H
+#ifndef MYSCHEDULER_SRTF_H
+#define MYSCHEDULER_SRTF_H
 
 #include "Scheduler.h"
 
@@ -19,10 +19,10 @@ class SRTF : public Scheduler {
 
 public:
     SRTF() : Scheduler() {}
-    explicit SRTF(std::ifstream &input_file);
-    void processQueue(std::queue<Process> &readyQueue) override;
+    explicit SRTF(std::ifstream &input_file, CPU &cpu);
+    void processQueue(std::queue<Process> &readyQueue, CPU &cpu) override;
 
 };
 
 
-#endif //OSLAB03_SRTF_H
+#endif //MYSCHEDULER_SRTF_H

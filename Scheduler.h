@@ -2,13 +2,14 @@
 // Created by Scott Clay on 2019-05-07.
 //
 
-#ifndef OSLAB03_SCHEDULER_H
-#define OSLAB03_SCHEDULER_H
+#ifndef MYSCHEDULER_SCHEDULER_H
+#define MYSCHEDULER_SCHEDULER_H
 
 #include <iostream>
 #include <queue>
 #include <fstream>
 #include "Process.h"
+#include "CPU.h"
 
 
 class Scheduler {
@@ -18,13 +19,12 @@ protected:
 
 public:
     Scheduler() { avgBurst=0; avgWait=0; avgTurnaround=0; avgResponse=0; totalContextSwitches=0; }
-    explicit Scheduler(std::ifstream &input_file);
     void buildQueue(std::ifstream &input_file, std::queue<Process> &readyQueue);
-    virtual void processQueue(std::queue<Process> &readyQueue);
+    virtual void processQueue(std::queue<Process> &readyQueue, CPU &cpu);
     void printTable();
     void printStats();
 
 };
 
 
-#endif //OSLAB03_SCHEDULER_H
+#endif //MYSCHEDULER_SCHEDULER_H

@@ -4,8 +4,8 @@
  * Due on 2019-5-12
  */
 
-#ifndef OSLAB03_FCFS_H
-#define OSLAB03_FCFS_H
+#ifndef MYSCHEDULER_FCFS_H
+#define MYSCHEDULER_FCFS_H
 
 #include "Scheduler.h"
 
@@ -20,10 +20,10 @@ class FCFS : public Scheduler {
 
 public:
     FCFS() : Scheduler() {}
-    explicit FCFS(std::ifstream &input_file);
-    void processQueue(std::queue<Process> &readyQueue) override;
+    explicit FCFS(std::ifstream &input_file, CPU &cpu);
+    void processQueue(std::queue<Process> &readyQueue, CPU &cpu) override;
 
 };
 
 
-#endif //OSLAB03_FCFS_H
+#endif //MYSCHEDULER_FCFS_H

@@ -6,15 +6,15 @@
 
 #include "SRTF.h"
 
-SRTF::SRTF(std::ifstream &input_file) {
+SRTF::SRTF(std::ifstream &input_file, CPU &cpu) {
     std::queue<Process> readyQueue;
     buildQueue(input_file, readyQueue);
     std::cout << "SRTF Scheduler Built\n";
-    processQueue(readyQueue);
+    processQueue(readyQueue, cpu);
 
 }
 
-void SRTF::processQueue(std::queue<Process> &readyQueue) {
-    Scheduler::processQueue(readyQueue);
+void SRTF::processQueue(std::queue<Process> &readyQueue, CPU &cpu) {
+
 
 }
