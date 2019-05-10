@@ -14,7 +14,7 @@
 
 class Scheduler {
 protected:
-    std::queue<Process> processList;
+    std::priority_queue<Process, std::vector<Process>, Process> processList;
     int avgBurst, avgWait, avgTurnaround, avgResponse, totalContextSwitches;
 
 public:

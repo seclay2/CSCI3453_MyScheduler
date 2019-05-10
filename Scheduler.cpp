@@ -31,9 +31,9 @@ void Scheduler::printTable() {
               << TableTools::center("Turnaround", 12) << " | "
               << TableTools::center("Context Switches", 18) << "\n"
               << std::string(12*6 + 3*6 + 18, '-') << "\n";
-    std::queue<Process> rq = processList;
+    std::priority_queue<Process, std::vector<Process>, Process> rq = processList;
     while (!rq.empty()) {
-        Process temp = rq.front();
+        Process temp = rq.top();
         std::cout << TableTools::pri(temp.pid, 12) << " | "
                   << TableTools::pri(temp.arrivalTime, 12) << " | "
                   << TableTools::pri(temp.burstTime, 12) << " | "

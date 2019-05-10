@@ -14,30 +14,31 @@ FCFS::FCFS(std::ifstream &input_file, CPU &cpu) {
 }
 
 void FCFS::processQueue(std::queue<Process> &readyQueue, CPU &cpu) {
-    std::queue<Process> rq = readyQueue;
     int numProcesses = readyQueue.size();
     int runningBurst=0, runningWait=0, runningTurnaround=0, runningResponse=0;
 
     while (!readyQueue.empty()) {
-        Process active = readyQueue.front();
+        Process active = readyQueue.front();                                // Move ready process into focus
+        readyQueue.pop();                                                   // Remove process from ready queue
 
-        /* Process */
-        active.waitTime = cpu.getClock() - active.arrivalTime;
-        cpu.run(active, active.burstTime);
-        active.completionTime = cpu.getClock();
-        active.turnaround = active.completionTime - active.arrivalTime;
+        /* Per Process */
+        active.waitTime = cpu.getClock() - active.arrivalTime;              // Set wait time
+        int activeBurst = active.burstTime;                                 // Save original burst time
+        cpu.run(active, active.burstTime);                                  // Run for full burst time
+        active.burstTime = activeBurst;                                     // Restore original burst time
+        active.completionTime = cpu.getClock();                             // Set completion time
+        active.turnaround = active.completionTime - active.arrivalTime;     // Set turnaround
 
-        active.burstTime = readyQueue.front().burstTime;
-        processList.push(active);
-        readyQueue.pop();
+        processList.push(active);                                           // Add Completed Process to list
 
-        /* Stats */
+        /* Overall Stats */
         runningBurst += active.burstTime;
         runningWait += active.waitTime;
         runningTurnaround += active.turnaround;
         runningResponse += active.waitTime;
     }
 
+    /* Overall Stats */
     avgBurst = runningBurst / numProcesses;
     avgWait = runningWait / numProcesses;
     avgTurnaround = runningTurnaround / numProcesses;
