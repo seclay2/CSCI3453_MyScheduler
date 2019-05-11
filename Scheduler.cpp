@@ -1,6 +1,13 @@
-//
-// Created by Scott Clay on 2019-05-07.
-//
+/**
+ * @file Scheduler.cpp
+ * @author Scott Clay
+ *
+ * Due on 2019-5-12
+ *
+ * @section DESCRIPTION
+ *
+ * Function definitions for class Scheduler
+ */
 
 #include "Scheduler.h"
 #include "TableTools.h"
@@ -48,10 +55,10 @@ void Scheduler::printTable() {
 }
 
 void Scheduler::printStats() {
-    std:: cout << "Average CPU burst time:  " << avgBurst << "\n"
-               << "Average waiting time:  " << avgWait << "\n"
-               << "Average turnaround time:  " << avgTurnaround << "\n"
-               << "Average response time:  " << avgResponse << "\n"
+    std:: cout << "Average CPU burst time:  " << TableTools::prd(avgBurst, 1, 8+5) << "\n"
+               << "Average waiting time:  " << TableTools::prd(avgWait, 1, 10+5) << "\n"
+               << "Average turnaround time:  " << TableTools::prd(avgTurnaround, 1, 7+5) << "\n"
+               << "Average response time:  " << TableTools::prd(avgResponse, 1, 9+5) << "\n"
                << "Total number of context switches:  " << totalContextSwitches << "\n";
 
 }

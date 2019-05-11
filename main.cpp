@@ -1,7 +1,15 @@
 /**
- * main.cpp
- * Created by Scott Clay on 2019-5-6
+ * @file main.cpp
+ * @author Scott Clay
+ *
  * Due on 2019-5-12
+ *
+ * @section DESCRIPTION
+ *
+ * Driver program for simulating a scheduling algorithm on
+ * a list of processes from an input file.
+ *
+ * ./myscheduler <input file> <scheduling algorithm> <time quantum(optional)>
  */
 
 #include <iostream>
@@ -57,7 +65,6 @@ int main(int argc, char *argv[])
         std::cout << "Invalid scheduling algorithm. FCFS, SRTF, RR supported\n";
         exit(1);
     }
-
 
     return 0;
 }

@@ -1,7 +1,12 @@
 /**
- * FCFS.cpp
- * Created by Scott Clay on 2019-5-6
+ * @file FCFS.cpp
+ * @author Scott Clay
+ *
  * Due on 2019-5-12
+ *
+ * @section DESCRIPTION
+ *
+ * Function definitions for class FCFS
  */
 
 #include "FCFS.h"
@@ -14,8 +19,8 @@ FCFS::FCFS(std::ifstream &input_file, CPU &cpu) {
 }
 
 void FCFS::processQueue(std::queue<Process> &readyQueue, CPU &cpu) {
-    int numProcesses = readyQueue.size();
-    int runningBurst=0, runningWait=0, runningTurnaround=0, runningResponse=0;
+    double numProcesses = readyQueue.size();
+    double runningBurst=0, runningWait=0, runningTurnaround=0, runningResponse=0;
 
     while (!readyQueue.empty()) {
         Process active = readyQueue.front();                                // Move ready process into focus

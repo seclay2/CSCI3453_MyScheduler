@@ -1,7 +1,12 @@
 /**
- * RR.cpp
- * Created by Scott Clay on 2019-5-6
+ * @file RR.cpp
+ * @author Scott Clay
+ *
  * Due on 2019-5-12
+ *
+ * @section DESCRIPTION
+ *
+ * Function definitions for class RR
  */
 
 #include "RR.h"
@@ -27,8 +32,8 @@ RR::RR(std::ifstream &input_file, int qs, CPU &cpu) {
 void RR::processQueue(std::queue<Process> &readyQueue, CPU &cpu) {
     std::queue<Process> activeQueue;
     std::unordered_map<int, int> burstTimes;
-    int numProcesses = readyQueue.size();
-    int runningBurst=0, runningWait=0, runningTurnaround=0, runningResponse=0;
+    double numProcesses = readyQueue.size();
+    double runningBurst=0, runningWait=0, runningTurnaround=0, runningResponse=0;
 
     activeQueue.push(readyQueue.front());
     readyQueue.pop();
@@ -43,7 +48,7 @@ void RR::processQueue(std::queue<Process> &readyQueue, CPU &cpu) {
             runningResponse += active.waitTime;                         // Update running response time
             //printf("pid: %d, arrival: %d, clock: %d, wait: %d\n", active.pid, active.arrivalTime, cpu.getClock(), active.waitTime);
         } else {
-            active.waitTime += cpu.getClock() - active.completionTime;
+            active.waitTime += (cpu.getClock() - active.completionTime);
         }
 
         /* If process will NOT complete this CPU cycle */

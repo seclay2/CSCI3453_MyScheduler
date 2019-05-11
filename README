@@ -1,0 +1,93 @@
+*******************************************************
+*  Name       :  Scott Clay               
+*  Class      :  CSC 3453         
+*  Assignment :  Lab 03
+*  Due Date   :  May 12, 2019
+*******************************************************
+
+
+                 Read Me
+
+
+*******************************************************
+*  Description of the program
+*******************************************************
+
+This C++ program implements a simulation of running various
+CPU scheduling algorithms from a list of processes in an input
+file.
+
+*******************************************************
+*  Source files
+*******************************************************
+
+main.cpp
+   Main driver program.
+   Runs a simulation of a specified scheduling algorithm and outputs
+   a table of processes, along with
+
+Process.h
+    Struct Process defines a basic process unit that contains process
+    attributes and helper functions.
+
+TableTools.h
+    TableTools namespace of various table formatting
+    tools.
+
+CPU.cpp/h
+    Class CPU defines a virtual CPU object that runs a process given to it.
+    Function declarations and documentation in CPU.h
+
+Scheduler.cpp/h
+    Class Scheduler defines a basic Scheduler object that schedules processes
+    from a list of processes from an input file.
+    Object also contains list of processes and statistics from scheduling.
+    Function declarations and documentation in Scheduler.h
+
+FCFS.cpp/h
+    Class FCFS defines a derivative class of Scheduler that implements a
+    First-Come-First-Serve scheduling algorithm.
+    Function declarations and documentation in FCFS.h
+
+SRTF.cpp/h
+    Class SRTF defines a derivative class of Scheduler that implements a
+    Shortest-Remaining-Time-First scheduling algorithm.
+    Function declarations and documentation in SRTF.h
+
+RR.cpp/h
+    Class RR defines a derivative class of Scheduler that implements a
+    Round-Robin scheduling algorithm.
+    Function declarations and documentation in RR.h
+
+   
+*******************************************************
+*  Circumstances of programs
+*******************************************************
+
+   The program runs successfully.  
+   
+   The program was developed and tested on gcc Apple LLVM version
+   10.0.1.  It was compiled, run, and tested on gcc csegrid.ucdenver.pvt.
+
+
+*******************************************************
+*  How to build and run the program
+*******************************************************
+
+1. Build the program.
+
+    Change to the directory that contains the file by:
+    % cd Scott_Clay_Lab3/
+
+    Compile the program by:
+    % make
+
+2. Run the program by:
+   % ./myscheduler <input_file> <scheduling_algorithm> <quantum_size>
+
+   input_file is file of process list
+   scheduling_algorithm is desired scheduling algorithm initialization ( FCFS, SRTF, RR )
+   quantum_size is optional time quantum size for use with RR algorithm, default quantum_size is 3
+
+3. Delete executables by
+   % ./make clean

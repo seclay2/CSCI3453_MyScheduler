@@ -1,6 +1,8 @@
 /**
- * TableTools.h
- * Created by Scott Clay on 2019-05-07.
+ * @file TableTools.h
+ * @author Scott Clay
+ *
+ * @section DESCRIPTION
  *
  * Table formatting functions, adapted from user synaptik on stackoverflow.com
  */
